@@ -59,6 +59,6 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = false;
         _sceneTransitionAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Intro");
     }
 }

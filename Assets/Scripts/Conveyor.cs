@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -10,12 +11,18 @@ public class Conveyor : MonoBehaviour
     private Rigidbody _rb;
     private MeshRenderer _meshRenderer;
     private float currentPositionOffSet;
+    private GameManager _gameManager;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _meshRenderer = GetComponent<MeshRenderer>();
         _meshRenderer.material.SetFloat("_Speed", speed);
         currentPositionOffSet = 0;
+        _gameManager = FindObjectOfType<GameManager>();
+        if (_gameManager.powerUpData.currentPowerUp == PowerUpSO.PowerUp.Powder)
+        {
+            speed = speed / 1.2f;
+        }
     }
 
     private void Update()

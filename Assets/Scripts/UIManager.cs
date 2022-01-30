@@ -100,7 +100,7 @@ public class UIManager: MonoBehaviour
         ToggleIntroOutroText(false);
     }
 
-    public void SetScoreOutro(int value)
+    public void SetScoreOutro(float value)
     {
         scoreOutroText.text = value.ToString();
     }

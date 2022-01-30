@@ -6,10 +6,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.XR;
+using FMOD.Studio;
 
 public class GameManager : MonoBehaviour
 {
-    public int score;
+    public float score;
     public PowerUpSO powerUpData;
     public CoinsSO coinData;
     public DaySO daysData;
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
     private UIManager _uiManager;
     private CinemachineVirtualCamera _vCam;
     public Animator sceneTransitionAnimator;
+    private FMOD.Studio.EventInstance _music;
+    private FMOD.Studio.EventInstance _ambient;
+    private FMOD.Studio.EventInstance _ambient02;
+    private FMOD.Studio.EventInstance _horn;
+    
 
     public enum GameMode
     {
@@ -29,6 +35,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        _music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Theme");
+        _ambient = FMODUnity.RuntimeManager.CreateInstance("event:/Ambient/Factory");
+        _ambient02 = FMODUnity.RuntimeManager.CreateInstance("event:/Ambient/Treadmill");
+        _horn = FMODUnity.RuntimeManager.CreateInstance("event:/Stingers/FinalHorn");
+        _ambient.start();
+        _ambient.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        _ambient02.start();
+        _ambient02.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        _ambient.setVolume(0.5f);
+        _ambient02.setVolume(0.25f);
+        _music.setVolume(0.7f);
         _vCam = FindObjectOfType<CinemachineVirtualCamera>();
         _uiManager = FindObjectOfType<UIManager>();
         _spawner = FindObjectOfType<Spawner>();
@@ -83,21 +100,26 @@ public class GameManager : MonoBehaviour
         _uiManager.ToggleTimer(true);
         _uiManager.ToggleIdleReticle(true);
         ToggleCamMotion(true);
+        _horn.start();
+        yield return new WaitForSeconds(1f);
+        _music.start();
         _spawner.InitSpawn();
         yield return null;
     }
 
     IEnumerator Outro()
     {
+        _music.stop(STOP_MODE.ALLOWFADEOUT);
+        _horn.start();
         _uiManager.ToggleTimer(false);
         _spawner.StopSpawn();
         _uiManager.RunOutroText();
+        ToggleCamMotion(false);
         yield return new WaitForSeconds(3f);
         _uiManager.SetScoreOutro(score);
         coinData.IncreaseMoney(CalculateCoinGain());
         _uiManager.SetCoin(coinData.amount);
         _uiManager.ToggleScoreLeaderboard(true);
-        ToggleCamMotion(false);
         ToggleMouseCursor(true);
         yield return new WaitForSeconds(8f);
         yield return null;
@@ -146,6 +168,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         daysData.SkipDay();
         powerUpData.currentPowerUp = PowerUpSO.PowerUp.None;
+        _ambient.stop(STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene("Game");
     }
     
@@ -155,11 +178,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         daysData.SkipDay();
         powerUpData.currentPowerUp = PowerUpSO.PowerUp.None;
+        _ambient.stop(STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene("Shop");
     }
 
     public int CalculateCoinGain()
     {
-        return score / 2;
+        return (int)(score / 2);
     }
 }

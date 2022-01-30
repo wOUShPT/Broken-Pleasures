@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4045372521930108327
+--- !u!114 &-5368959165200726935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,17 +9,132 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Drop
   m_EditorClassIdentifier: 
-  Path: E:/Users/woush/Documents/GitHub/GGJ22/GGJ22/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637790114164685082
-  FileSizes:
-  - Name: Desktop
-    Value: 1012
-  Exists: 1
+  Path: event:/SFX/Drop
+  Guid:
+    Data1: -889027596
+    Data2: 1304672873
+    Data3: -513475920
+    Data4: -1363629982
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3823754906856027815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stingers/Wrong
+  m_EditorClassIdentifier: 
+  Path: event:/Stingers/Wrong
+  Guid:
+    Data1: -2057766847
+    Data2: 1184373652
+    Data3: 1953554082
+    Data4: -2022344767
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3102991209730702520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Treadmill
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Treadmill
+  Guid:
+    Data1: 2101327536
+    Data2: 1171799898
+    Data3: -1282133321
+    Data4: 1417359715
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2918121924166245543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stingers/FinalHorn
+  m_EditorClassIdentifier: 
+  Path: event:/Stingers/FinalHorn
+  Guid:
+    Data1: 792130178
+    Data2: 1208309894
+    Data3: -1115448415
+    Data4: -941681270
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-654055548763790475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Factory
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Factory
+  Guid:
+    Data1: 776804586
+    Data2: 1144598195
+    Data3: -588858237
+    Data4: -1448438940
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,17 +148,26 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 2166940840039391328}
-  - {fileID: -4045372521930108327}
-  EditorEvents: []
+  - {fileID: 4491796371352119909}
+  - {fileID: 8826605917181793312}
+  EditorEvents:
+  - {fileID: 8166663239570189540}
+  - {fileID: 5996382883531575449}
+  - {fileID: -3102991209730702520}
+  - {fileID: -654055548763790475}
+  - {fileID: -5368959165200726935}
+  - {fileID: -2918121924166245543}
+  - {fileID: 7452760070020129200}
+  - {fileID: -3823754906856027815}
+  - {fileID: 7287358990671163071}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -4045372521930108327}
+  - {fileID: 8826605917181793312}
   StringsBanks:
-  - {fileID: 2166940840039391328}
-  cacheTime: 637790114164765093
+  - {fileID: 4491796371352119909}
+  cacheTime: 637791465054490455
   cacheVersion: 10
---- !u!114 &2166940840039391328
+--- !u!114 &4491796371352119909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,11 +179,139 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: E:/Users/woush/Documents/GitHub/GGJ22/GGJ22/Build/Desktop/Master.strings.bank
+  Path: E:/Users/woush/Documents/GitHub/GGJ22FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637790114164765093
+  lastModified: 637791465054490455
   FileSizes:
   - Name: Desktop
-    Value: 700
+    Value: 1138
+  Exists: 1
+--- !u!114 &5996382883531575449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Theme
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Theme
+  Guid:
+    Data1: -1874542725
+    Data2: 1324187272
+    Data3: 404703923
+    Data4: -1275508546
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7287358990671163071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stingers/Correct
+  m_EditorClassIdentifier: 
+  Path: event:/Stingers/Correct
+  Guid:
+    Data1: 53594606
+    Data2: 1186066858
+    Data3: -11034982
+    Data4: -289929891
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7452760070020129200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Throw
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Throw
+  Guid:
+    Data1: -78053140
+    Data2: 1229094684
+    Data3: 1960735407
+    Data4: -2063842890
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8166663239570189540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Grab
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Grab
+  Guid:
+    Data1: -885745350
+    Data2: 1275467878
+    Data3: 2076948874
+    Data4: 1934980821
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8826605917181793312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: E:/Users/woush/Documents/GitHub/GGJ22FMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637791465054470455
+  FileSizes:
+  - Name: Desktop
+    Value: 5420960
   Exists: 1

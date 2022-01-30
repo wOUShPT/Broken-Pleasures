@@ -6,18 +6,18 @@ using UnityEngine;
 public class Pit : MonoBehaviour
 {
     
-    GameManager _gameManager;
+    //GameManager _gameManager;
 
     private void Awake()
     {
-        _gameManager = FindObjectOfType<GameManager>();
+        //_gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Object"))
         {
-            _gameManager.Score(-1);
+            other.gameObject.SetActive(false);
         }
     }
 }

@@ -24,6 +24,11 @@ public class Spawner : MonoBehaviour
     void Awake()
     {
         _gameManager = FindObjectOfType<GameManager>();
+        if (_gameManager.powerUpData.currentPowerUp == PowerUpSO.PowerUp.Powder)
+        {
+            minSpawnInterval = 2;
+            maxSpawnInterval = 2;
+        }
     }
 
     public void InitSpawn()

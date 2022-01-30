@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMOD.Studio;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerBehaviour : MonoBehaviour
     private bool canGrab;
     private Ray _ray;
     private Camera _mainCamera;
+    private FMOD.Studio.EventInstance _grab;
+    private FMOD.Studio.EventInstance _throw;
     void Start()
     {
         hit = new RaycastHit();
@@ -29,6 +32,8 @@ public class PlayerBehaviour : MonoBehaviour
         _inputHandler = FindObjectOfType<InputHandler>();
         _uiManager = FindObjectOfType<UIManager>();
         _gameManager = FindObjectOfType<GameManager>();
+        _grab = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Grab");
+        _throw = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Throw");
     }
 
     private void FixedUpdate()
@@ -69,6 +74,7 @@ public class PlayerBehaviour : MonoBehaviour
                     _currentObjectRb.velocity = Vector3.zero;
                     _currentObjectRb.angularVelocity = Vector3.zero;
                     _uiManager.ToggleIdleReticle(false);
+                    _grab.start();
                 }
                 animator.SetBool("Pick", true);
             }
@@ -84,6 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
                     _currentObjectRb = null;
                     _currentObjectCollider = null;
                     _uiManager.ToggleIdleReticle(true);
+                    _throw.start();
                 }
                 animator.SetBool("Pick", false);
             }
