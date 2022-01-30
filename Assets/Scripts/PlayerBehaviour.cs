@@ -7,6 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     private InputHandler _inputHandler;
     public float grabDistance;
+    private GameManager _gameManager;
     private UIManager _uiManager;
     public Transform grabPivot;
     public Animator animator;
@@ -24,11 +25,10 @@ public class PlayerBehaviour : MonoBehaviour
         hit = new RaycastHit();
         _isGrabbing = false;
         canGrab = false;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = false;
         _mainCamera = Camera.main;
         _inputHandler = FindObjectOfType<InputHandler>();
         _uiManager = FindObjectOfType<UIManager>();
+        _gameManager = FindObjectOfType<GameManager>();
     }
 
     private void FixedUpdate()
@@ -41,6 +41,10 @@ public class PlayerBehaviour : MonoBehaviour
                 _currentObjectCollider = hit.collider;
                 canGrab = true;
             }
+            else
+            {
+                canGrab = false;
+            }
         }
         else
         {
@@ -50,33 +54,39 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (_inputHandler.MouseButton)
+        if (_gameManager.currentGameState == GameManager.GameMode.GameLoop)
         {
-            if (canGrab)
+            if (_inputHandler.MouseButton)
             {
-                _isGrabbing = true;
-                canGrab = false;
-                _currentObjectCollider.enabled = false;
-                _currentObjectRb.transform.position = grabPivot.position;
-                _currentObjectRb.transform.parent = grabPivot.transform;
-                _currentObjectRb.useGravity = false;
-                _currentObjectRb.velocity = Vector3.zero;
+                if (canGrab)
+                {
+                    _isGrabbing = true;
+                    canGrab = false;
+                    _currentObjectCollider.enabled = false;
+                    _currentObjectRb.transform.position = grabPivot.position;
+                    _currentObjectRb.transform.parent = grabPivot.transform;
+                    _currentObjectRb.useGravity = false;
+                    _currentObjectRb.velocity = Vector3.zero;
+                    _currentObjectRb.angularVelocity = Vector3.zero;
+                    _uiManager.ToggleIdleReticle(false);
+                }
+                animator.SetBool("Pick", true);
             }
-            animator.SetBool("Pick", true);
-        }
-        else
-        {
-            if (_isGrabbing)
+            else
             {
-                _isGrabbing = false;
-                _currentObjectRb.transform.parent = _poolTranform;
-                _currentObjectCollider.enabled = true;
-                _currentObjectRb.useGravity = true;
-                _currentObjectRb.AddForce(_mainCamera.transform.forward * 5f, ForceMode.Impulse);
-                _currentObjectRb = null;
-                _currentObjectCollider = null;
+                if (_isGrabbing)
+                {
+                    _isGrabbing = false;
+                    _currentObjectRb.transform.parent = _poolTranform;
+                    _currentObjectCollider.enabled = true;
+                    _currentObjectRb.useGravity = true;
+                    _currentObjectRb.AddForce(_mainCamera.transform.forward * 5f, ForceMode.Impulse);
+                    _currentObjectRb = null;
+                    _currentObjectCollider = null;
+                    _uiManager.ToggleIdleReticle(true);
+                }
+                animator.SetBool("Pick", false);
             }
-            animator.SetBool("Pick", false);
         }
     }
     

@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
     private GameManager _gameManager;
     public float minSpawnInterval;
     public float maxSpawnInterval;
+    public List<GameObject> prefabs;
+    public List<float> spawnRateList;
 
     private Vector3 spawnPosition
     {
@@ -21,24 +23,59 @@ public class Spawner : MonoBehaviour
 
     void Awake()
     {
-        //InvokeRepeating("InstatiatePrefab", 0, 0.25f);
         _gameManager = FindObjectOfType<GameManager>();
-        InitSpawn();
     }
 
-    void InitSpawn()
+    public void InitSpawn()
     {
         StartCoroutine(Spawn());
     }
 
     IEnumerator Spawn()
     {
-        while (_gameManager.gameModeState == GameManager.GameMode.GameLoop)
+        while (_gameManager.currentGameState == GameManager.GameMode.GameLoop)
         {
-            pool.InstantiatePrefab(spawnPosition, Random.rotation);
+            pool.InstantiatePrefab(prefabs[GetWeightedRandomIndex()], spawnPosition, Random.rotation);
             
             yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
             yield return null;
         }
+    }
+
+    public void StopSpawn()
+    {
+        StopCoroutine(Spawn());
+    }
+    
+    private int GetWeightedRandomIndex()
+    {
+        float sum = 0;
+        for (int i = 0; i < spawnRateList.Count; i++)
+        {
+            sum += spawnRateList[i];
+        }
+        float randomWeight = 0;
+        
+        do
+        {
+            if (sum == 0)
+            {
+                return 0;
+            }
+            
+            randomWeight = Random.Range(0, sum);
+        } 
+        while (randomWeight == sum);
+            
+        for(int i = 0; i < spawnRateList.Count; i++)
+        {
+            if (randomWeight < spawnRateList[i])
+            {
+                    return i;
+            }
+            randomWeight -= spawnRateList[i];
+        }
+
+        return 0;
     }
 }

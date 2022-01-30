@@ -22,7 +22,7 @@ public class Pool : MonoBehaviour
         objectList = new List<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject currentObject = InstantiatePrefab(transform.position, Random.rotation);
+            GameObject currentObject = InstantiatePrefab(prefab, transform.position, Random.rotation);
             objectList.Add(currentObject);
             SendToPool(currentObject);
         }
@@ -42,9 +42,10 @@ public class Pool : MonoBehaviour
     }
 
 
-    public GameObject InstantiatePrefab(Vector3 position, Quaternion rotation)
+    public GameObject InstantiatePrefab(GameObject currentPrefab, Vector3 position, Quaternion rotation)
     {
-        GameObject currentObject = Instantiate(prefab, position, rotation, transform);
+        GameObject currentObject = Instantiate(currentPrefab, position, rotation, transform);
+        objectList.Add(currentObject);
         return currentObject;
     }
 }

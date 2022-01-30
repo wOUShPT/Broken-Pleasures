@@ -15,6 +15,9 @@ ModelImporter:
   - first:
       74: -9028599851208447132
     second: Esteira|Shader NodetreeAction
+  - first:
+      74: -8272796319216808758
+    second: Esteira|WALK.001
   externalObjects: {}
   materials:
     materialImportMode: 2
