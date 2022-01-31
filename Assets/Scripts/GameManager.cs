@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Outro()
     {
+        _uiManager.ToggleIdleReticle(false);
         _music.stop(STOP_MODE.ALLOWFADEOUT);
         _horn.start();
         _uiManager.ToggleTimer(false);
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour
     {
         if (state)
         {
-            Cursor.SetCursor(_uiManager.cursorImage, Vector2.zero, CursorMode.Auto);
+            //Cursor.SetCursor(_uiManager.cursorImage, Vector2.zero, CursorMode.Auto);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }

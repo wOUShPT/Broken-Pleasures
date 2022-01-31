@@ -61,7 +61,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_gameManager.currentGameState == GameManager.GameMode.GameLoop)
         {
-            if (_inputHandler.MouseButton)
+            if (_inputHandler.MouseButton && _inputHandler != null)
             {
                 if (canGrab)
                 {

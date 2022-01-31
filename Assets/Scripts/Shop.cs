@@ -19,7 +19,7 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
+        //Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         coinText.text = coinData.amount.ToString();
@@ -29,16 +29,6 @@ public class Shop : MonoBehaviour
         if (coinData.amount >= 20)
         {
             powderButton.interactable = true;
-        }
-
-        if (coinData.amount >= 60)
-        {
-            javButton.interactable = true;
-        }
-
-        if (coinData.amount >= 80)
-        {
-            magnetButton.interactable = true;
         }
     }
 

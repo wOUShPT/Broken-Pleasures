@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using FMODUnity;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    
     public CanvasGroup mainMenu;
 
     public CanvasGroup credits;
@@ -15,12 +17,32 @@ public class MainMenu : MonoBehaviour
 
     public Texture2D cursorImage;
 
+    public MouseSense mouseSenseData;
+
+    public Slider mouseSenseSlider;
+
+    public DaySO daysData;
+
+    public CoinsSO CoinsData;
+    
+    private FMOD.Studio.EventInstance _music;
+
 
     private void Awake()
     {
-        Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
+        //Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        mouseSenseSlider.value = mouseSenseData.sensitivity;
+        daysData.currentIndex = 0;
+        CoinsData._amount = 0;
+        _music= FMODUnity.RuntimeManager.CreateInstance("event:/Music/MenuMusic");
+        _music.start();
+    }
+    
+    private void OnDestroy()
+    {
+        _music.stop(STOP_MODE.ALLOWFADEOUT);
     }
 
     public void LoadGame()
@@ -60,5 +82,11 @@ public class MainMenu : MonoBehaviour
         _sceneTransitionAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("Intro");
+    }
+
+
+    public void SetMouseSense()
+    {
+        mouseSenseData.sensitivity = mouseSenseSlider.value;
     }
 }

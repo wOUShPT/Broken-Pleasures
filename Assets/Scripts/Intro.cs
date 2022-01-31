@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,11 +15,19 @@ public class Intro : MonoBehaviour
     public Animator audreyAnimator;
     public Animator dialogueBoxAnimator;
     public Animator sceneTransitionAnimator;
+    private FMOD.Studio.EventInstance _music;
     void Awake()
     {
         currentIndex = 0;
         StartCoroutine(RunDialogue());
         dialogueText.text = "";
+        _music= FMODUnity.RuntimeManager.CreateInstance("event:/Music/MenuMusic");
+        _music.start();
+    }
+
+    private void OnDestroy()
+    {
+        _music.stop(STOP_MODE.ALLOWFADEOUT);
     }
 
     IEnumerator RunDialogue()

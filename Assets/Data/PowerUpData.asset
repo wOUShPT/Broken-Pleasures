@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4bf808e57710034690f3dc6205fa5e7, type: 3}
   m_Name: PowerUpData
   m_EditorClassIdentifier: 
-  currentPowerUp: 2
+  currentPowerUp: 0

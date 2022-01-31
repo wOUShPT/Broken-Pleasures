@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b68ec8527d77f4cbf2a9a2ad79071e, type: 3}
   m_Name: DaysData
   m_EditorClassIdentifier: 
+  currentIndex: 0

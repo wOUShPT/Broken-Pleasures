@@ -2797,7 +2797,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607698723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -3254,7 +3254,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732361134}
-  - component: {fileID: 732361136}
   - component: {fileID: 732361135}
   m_Layer: 0
   m_Name: DDOL
@@ -3287,18 +3286,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b65768cfed7da1e4c879ef095880eb61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &732361136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732361133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a01c917e409e3c748876e8dcedb0f5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &747344592 stripped
@@ -4825,6 +4812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1377380489}
   - component: {fileID: 1377380488}
+  - component: {fileID: 1377380490}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -4882,6 +4870,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1377380490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377380487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96b47b9b2fd48e4c9fa5381cf19eada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSenseData: {fileID: 11400000, guid: 5404ea3915cb11b429b4033e902d2fe7, type: 2}
+  vCam: {fileID: 1377380488}
 --- !u!4 &1390534002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8035857614479882688, guid: fa8b4a58eea9d6b4097861f6971dd995, type: 3}
@@ -6151,6 +6153,10 @@ MonoBehaviour:
   - {fileID: 617323249635854019, guid: 106bac3b3e4f9c64e9cb6ba3752d1cda, type: 3}
   - {fileID: 8508730433711867086, guid: 1ffc267156c9f4b4291a1291811652f5, type: 3}
   - {fileID: 2833995806552908713, guid: 6df4d54ce6995754788e169ae0a7bec9, type: 3}
+  - {fileID: 8566405349790880405, guid: e97f28f4a0d74f94c9de33b3d537919c, type: 3}
+  - {fileID: 981381141608984532, guid: 16bdafaa77b4fa7438f5001c26c874a4, type: 3}
+  - {fileID: 7526763669200159111, guid: a63bdf3ccae8974449d15c49450fb514, type: 3}
+  - {fileID: 2471111050472841156, guid: 7a388f212bf91254fbd9fbb97d243bc8, type: 3}
   spawnRateList:
   - 70
   - 70
@@ -6165,6 +6171,10 @@ MonoBehaviour:
   - 70
   - 70
   - 30
+  - 15
+  - 15
+  - 10
+  - 10
 --- !u!1 &1995274520 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8416272007918961125, guid: fa8b4a58eea9d6b4097861f6971dd995, type: 3}

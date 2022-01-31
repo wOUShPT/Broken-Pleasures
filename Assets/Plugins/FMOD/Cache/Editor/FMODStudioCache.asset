@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3883969845226531436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Click
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Click
+  Guid:
+    Data1: 930947020
+    Data2: 1143629651
+    Data3: -122184831
+    Data4: 1768075574
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3823754906856027815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +72,33 @@ MonoBehaviour:
     Data2: 1184373652
     Data3: 1953554082
     Data4: -2022344767
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3234752556145540194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/PencilHover
+  m_EditorClassIdentifier: 
+  Path: event:/UI/PencilHover
+  Guid:
+    Data1: 1744723056
+    Data2: 1311445216
+    Data3: -1203966580
+    Data4: -1934977939
   Banks:
   - {fileID: 8826605917181793312}
   IsStream: 0
@@ -160,13 +214,45 @@ MonoBehaviour:
   - {fileID: 7452760070020129200}
   - {fileID: -3823754906856027815}
   - {fileID: 7287358990671163071}
+  - {fileID: 8174857145015117508}
+  - {fileID: 2767424731474428490}
+  - {fileID: -3234752556145540194}
+  - {fileID: -3883969845226531436}
+  - {fileID: 8956202088432333152}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8826605917181793312}
   StringsBanks:
   - {fileID: 4491796371352119909}
-  cacheTime: 637791465054490455
+  cacheTime: 637791544433623216
   cacheVersion: 10
+--- !u!114 &2767424731474428490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Hover
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Hover
+  Guid:
+    Data1: -2073241013
+    Data2: 1133702015
+    Data3: 1162634921
+    Data4: 1375283972
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4491796371352119909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,10 +268,10 @@ MonoBehaviour:
   Path: E:/Users/woush/Documents/GitHub/GGJ22FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637791465054490455
+  lastModified: 637791544433623216
   FileSizes:
   - Name: Desktop
-    Value: 1138
+    Value: 1368
   Exists: 1
 --- !u!114 &5996382883531575449
 MonoBehaviour:
@@ -295,6 +381,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8174857145015117508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MenuMusic
+  Guid:
+    Data1: 1280379713
+    Data2: 1279739632
+    Data3: -1176320837
+    Data4: -1345541406
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8826605917181793312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,8 +423,35 @@ MonoBehaviour:
   Path: E:/Users/woush/Documents/GitHub/GGJ22FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637791465054470455
+  lastModified: 637791544433603208
   FileSizes:
   - Name: Desktop
-    Value: 5420960
+    Value: 6021760
   Exists: 1
+--- !u!114 &8956202088432333152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/PencilClick
+  m_EditorClassIdentifier: 
+  Path: event:/UI/PencilClick
+  Guid:
+    Data1: 1021891533
+    Data2: 1128889546
+    Data3: 1307558574
+    Data4: 589058379
+  Banks:
+  - {fileID: 8826605917181793312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

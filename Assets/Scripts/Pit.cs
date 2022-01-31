@@ -15,9 +15,6 @@ public class Pit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Object"))
-        {
-            other.gameObject.SetActive(false);
-        }
+        
     }
 }
