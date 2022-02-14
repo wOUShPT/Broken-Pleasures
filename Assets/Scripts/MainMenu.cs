@@ -30,11 +30,11 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        //Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         mouseSenseSlider.value = mouseSenseData.sensitivity;
-        daysData.currentIndex = 0;
+        //daysData.currentIndex = 0;
         CoinsData._amount = 0;
         _music= FMODUnity.RuntimeManager.CreateInstance("event:/Music/MenuMusic");
         _music.start();
@@ -77,6 +77,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator TransitionToGame()
     {
+        mainMenu.interactable = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         _sceneTransitionAnimator.SetTrigger("FadeOut");

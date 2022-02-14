@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public PowerUpSO powerUpData;
     public Button powderButton;
     public Button javButton;
     public Button magnetButton;
@@ -19,14 +18,14 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        //Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        coinText.text = coinData.amount.ToString();
+        coinText.text = GameData.Coins.Amount.ToString();
         powderButton.interactable = false;
         javButton.interactable = false;
         magnetButton.interactable = false;
-        if (coinData.amount >= 20)
+        if (GameData.Coins.Amount >= 20)
         {
             powderButton.interactable = true;
         }
@@ -38,45 +37,38 @@ public class Shop : MonoBehaviour
         {
             case 0:
 
-                if (coinData.amount >= 20)
+                if (GameData.Coins.Amount >= 20)
                 {
-                    powerUpData.currentPowerUp = PowerUpSO.PowerUp.Powder;
-                    coinData.DecreaseMoney(20);
-                    powderButton.interactable = false;
-                    javButton.interactable = false;
-                    magnetButton.interactable = false;
-                    coinText.text = coinData.amount.ToString();
+                    GameData.PowerUp = GameData.PowerUpType.Powder;
+                    GameData.Coins.DecreaseMoney(20);
                 }
                 break;
             
             case 1:
 
-                if (coinData.amount >= 40)
+                if (GameData.Coins.Amount >= 40)
                 {
-                    powerUpData.currentPowerUp = PowerUpSO.PowerUp.Jav;
-                    coinData.DecreaseMoney(40);
-                    powderButton.interactable = false;
-                    javButton.interactable = false;
-                    magnetButton.interactable = false;
-                    coinText.text = coinData.amount.ToString();
+                    GameData.PowerUp = GameData.PowerUpType.Jav;
+                    GameData.Coins.DecreaseMoney(40);
                 }
 
                 break;
             
             case 2:
 
-                if (coinData.amount >= 60)
+                if (GameData.Coins.Amount >= 60)
                 {
-                    powerUpData.currentPowerUp = PowerUpSO.PowerUp.Magnet;
-                    coinData.DecreaseMoney(60);
-                    powderButton.interactable = false;
-                    javButton.interactable = false;
-                    magnetButton.interactable = false;
-                    coinText.text = coinData.amount.ToString();
+                    GameData.PowerUp = GameData.PowerUpType.Magnet;
+                    GameData.Coins.DecreaseMoney(60);
                 }
 
                 break;
         }
+        
+        powderButton.interactable = false;
+        javButton.interactable = false;
+        magnetButton.interactable = false;
+        coinText.text = GameData.Coins.Amount.ToString();
         
     }
 

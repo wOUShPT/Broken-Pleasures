@@ -45,10 +45,12 @@ public class PlayerBehaviour : MonoBehaviour
                 _currentObjectRb = hit.rigidbody;
                 _currentObjectCollider = hit.collider;
                 canGrab = true;
+                _uiManager.ToggleGrabPrompt(true);
             }
             else
             {
                 canGrab = false;
+                _uiManager.ToggleGrabPrompt(false);
             }
         }
         else
@@ -74,6 +76,7 @@ public class PlayerBehaviour : MonoBehaviour
                     _currentObjectRb.velocity = Vector3.zero;
                     _currentObjectRb.angularVelocity = Vector3.zero;
                     _uiManager.ToggleIdleReticle(false);
+                    _uiManager.ToggleGrabPrompt(false);
                     _grab.start();
                 }
                 animator.SetBool("Pick", true);
@@ -90,6 +93,7 @@ public class PlayerBehaviour : MonoBehaviour
                     _currentObjectRb = null;
                     _currentObjectCollider = null;
                     _uiManager.ToggleIdleReticle(true);
+                    _uiManager.ToggleGrabPrompt(false);
                     _throw.start();
                 }
                 animator.SetBool("Pick", false);

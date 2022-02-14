@@ -19,7 +19,7 @@ public class Conveyor : MonoBehaviour
         _meshRenderer.material.SetFloat("_Speed", speed);
         currentPositionOffSet = 0;
         _gameManager = FindObjectOfType<GameManager>();
-        if (_gameManager.powerUpData.currentPowerUp == PowerUpSO.PowerUp.Powder)
+        if (GameData.PowerUp == GameData.PowerUpType.Powder)
         {
             speed = speed / 1.2f;
         }

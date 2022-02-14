@@ -10,8 +10,8 @@ using FMOD.Studio;
 
 public class GameManager : MonoBehaviour
 {
+    public float gameDuration;
     public float score;
-    public PowerUpSO powerUpData;
     public CoinsSO coinData;
     public DaySO daysData;
     public float timer;
@@ -49,10 +49,9 @@ public class GameManager : MonoBehaviour
         _vCam = FindObjectOfType<CinemachineVirtualCamera>();
         _uiManager = FindObjectOfType<UIManager>();
         _spawner = FindObjectOfType<Spawner>();
-        currentGameState = GameMode.GameLoop;
         score = 0;
         currentGameState = GameMode.Idle;
-        StartCoroutine(Intro());
+        StartCoroutine(StartRound());
     }
 
     private void Update()
@@ -64,7 +63,7 @@ public class GameManager : MonoBehaviour
             if (timer <= 0)
             {
                 currentGameState = GameMode.Idle;
-                StartCoroutine(Outro());
+                StartCoroutine(EndRound());
             }
             _uiManager.SetTimer(timer);
         }
@@ -79,37 +78,47 @@ public class GameManager : MonoBehaviour
         score = Mathf.Clamp(score, 0, Int32.MaxValue);
     }
 
-    IEnumerator Intro()
+    IEnumerator StartRound()
     {
+        _uiManager.SetDay(GameData.Day.Index);
+        Debug.Log(GameData.Day.Index);
+        Debug.Log(GameData.PowerUp);
+        _uiManager.ToggleIdleReticle(false);
+        _uiManager.ToggleGrabPrompt(false);
         _uiManager.ToggleCoinInfo(false);
         ToggleMouseCursor(false);
         ToggleCamMotion(false);
-        _uiManager.SetDay(daysData.currentIndex);
         _uiManager.ToggleTimer(false);
-        _uiManager.ToggleIdleReticle(false);
         _uiManager.ToggleScoreLeaderboard(false);
         _uiManager.ToggleIntroOutroText(false);
+        if (GameData.PowerUp != GameData.PowerUpType.None)
+        {
+            yield return new WaitForSeconds(3f);
+            _uiManager.SetPowerUp((int)GameData.PowerUp);
+        }
         yield return new WaitForSeconds(5);
-        _uiManager.SetCoin(coinData.amount);
+        _uiManager.SetCoin(GameData.Coins.Amount);
         _uiManager.ToggleCoinInfo(true);
         _uiManager.RunCounterToInit();
         yield return new WaitForSeconds(3f);
         currentGameState = GameMode.GameLoop;
-        timer = 60;
+        timer = gameDuration;
         _uiManager.SetTimer(timer);
         _uiManager.ToggleTimer(true);
-        _uiManager.ToggleIdleReticle(true);
         ToggleCamMotion(true);
         _horn.start();
         yield return new WaitForSeconds(1f);
         _music.start();
         _spawner.InitSpawn();
+        yield return new WaitForSeconds(0.3f);
+        _uiManager.ToggleIdleReticle(true);
         yield return null;
     }
 
-    IEnumerator Outro()
+    IEnumerator EndRound()
     {
         _uiManager.ToggleIdleReticle(false);
+        _uiManager.ToggleGrabPrompt(false);
         _music.stop(STOP_MODE.ALLOWFADEOUT);
         _horn.start();
         _uiManager.ToggleTimer(false);
@@ -118,8 +127,9 @@ public class GameManager : MonoBehaviour
         ToggleCamMotion(false);
         yield return new WaitForSeconds(3f);
         _uiManager.SetScoreOutro(score);
-        coinData.IncreaseMoney(CalculateCoinGain());
-        _uiManager.SetCoin(coinData.amount);
+        GameData.Day.SkipDay();
+        GameData.Coins.IncreaseMoney(CalculateCoinGain());
+        _uiManager.SetCoin(GameData.Coins.Amount);
         _uiManager.ToggleScoreLeaderboard(true);
         ToggleMouseCursor(true);
         yield return new WaitForSeconds(8f);
@@ -146,7 +156,7 @@ public class GameManager : MonoBehaviour
     {
         if (state)
         {
-            //Cursor.SetCursor(_uiManager.cursorImage, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(_uiManager.cursorImage, Vector2.zero, CursorMode.Auto);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -159,27 +169,30 @@ public class GameManager : MonoBehaviour
     
     public void ExitGame()
     {
+        _uiManager.scoreLeaderboard.interactable = false;
         Application.Quit();
     }
 
 
     IEnumerator TransitionToNextDayCoroutine()
     {
+        _uiManager.scoreLeaderboard.interactable = false;
         sceneTransitionAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(3f);
-        daysData.SkipDay();
-        powerUpData.currentPowerUp = PowerUpSO.PowerUp.None;
+        GameData.PowerUp = GameData.PowerUpType.None;
         _ambient.stop(STOP_MODE.ALLOWFADEOUT);
+        _ambient02.stop(STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene("Game");
     }
     
     IEnumerator TransitionToShopCoroutine()
     {
+        _uiManager.scoreLeaderboard.interactable = false;
         sceneTransitionAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(3f);
-        daysData.SkipDay();
-        powerUpData.currentPowerUp = PowerUpSO.PowerUp.None;
+        GameData.PowerUp = GameData.PowerUpType.None;
         _ambient.stop(STOP_MODE.ALLOWFADEOUT);
+        _ambient02.stop(STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene("Shop");
     }
 

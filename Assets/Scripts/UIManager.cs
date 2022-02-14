@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class UIManager: MonoBehaviour
 {
     public CanvasGroup idleReticle;
+    public CanvasGroup grabPrompt;
     public CanvasGroup timer;
     private TextMeshProUGUI _timerText;
     public CanvasGroup scoreLeaderboard;
@@ -17,7 +18,11 @@ public class UIManager: MonoBehaviour
     public TextMeshProUGUI scoreOutroText;
     private TextMeshProUGUI introOutroInfoText;
     public Image day;
+    private Animator _dayAnimator;
     public List<Sprite> daysSprites;
+    public Image powerUp;
+    private Animator _powerUpAnimator;
+    public List<Sprite> powerUps;
     public Texture2D cursorImage;
     public CanvasGroup coinInfo;
     private TextMeshProUGUI _coinText;
@@ -28,6 +33,8 @@ public class UIManager: MonoBehaviour
         introOutroInfoText = introOutroInfo.GetComponent<TextMeshProUGUI>();
         _timerText = timer.GetComponentInChildren<TextMeshProUGUI>();
         _coinText = coinInfo.GetComponentInChildren<TextMeshProUGUI>();
+        _dayAnimator = day.GetComponent<Animator>();
+        _powerUpAnimator = powerUp.GetComponent<Animator>();
     }
 
     public void ToggleIdleReticle(bool state)
@@ -35,15 +42,16 @@ public class UIManager: MonoBehaviour
         idleReticle.alpha = state ? 1 : 0;
     }
     
-    public void ToggleGrabReticle(bool state)
+    public void ToggleGrabPrompt(bool state)
     {
-        idleReticle.alpha = state ? 1 : 0;
+        grabPrompt.alpha = state ? 1 : 0;
     }
 
 
     public void ToggleScoreLeaderboard(bool state)
     {
         scoreLeaderboard.alpha = state ? 1 : 0;
+        scoreLeaderboard.interactable = state;
     }
 
     public void RunCounterToInit()
@@ -108,6 +116,17 @@ public class UIManager: MonoBehaviour
     public void SetDay(int index)
     {
         day.sprite = daysSprites[index];
+        _dayAnimator.Play("Intro");
+    }
+
+    public void SetPowerUp(int index)
+    {
+        if (index == 0)
+        {
+            return;
+        }
+        powerUp.sprite = powerUps[index - 1];
+        _powerUpAnimator.Play("Intro");
     }
 
     public void SetCoin(int value)
