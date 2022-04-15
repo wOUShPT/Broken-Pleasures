@@ -1,17 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
     public float horizontalSize;
     public Pool pool;
-    public GameObject _prefab;
     private GameManager _gameManager;
     public float minSpawnInterval;
     public float maxSpawnInterval;
-    public List<GameObject> prefabs;
-    public List<float> spawnRateList;
+    public List<SexToy> sexToys;
 
     private Vector3 spawnPosition
     {
@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
     {
         while (_gameManager.currentGameState == GameManager.GameMode.GameLoop)
         {
-            pool.InstantiatePrefab(prefabs[GetWeightedRandomIndex()], spawnPosition, Random.rotation);
+            pool.InstantiatePrefab(sexToys[GetWeightedRandomIndex()].prefab, spawnPosition, Random.rotation);
             
             yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
             yield return null;
@@ -55,9 +55,9 @@ public class Spawner : MonoBehaviour
     private int GetWeightedRandomIndex()
     {
         float sum = 0;
-        for (int i = 0; i < spawnRateList.Count; i++)
+        for (int i = 0; i < sexToys.Count; i++)
         {
-            sum += spawnRateList[i];
+            sum += sexToys[i].weight;
         }
         float randomWeight = 0;
         
@@ -72,13 +72,13 @@ public class Spawner : MonoBehaviour
         } 
         while (randomWeight == sum);
             
-        for(int i = 0; i < spawnRateList.Count; i++)
+        for(int i = 0; i < sexToys.Count; i++)
         {
-            if (randomWeight < spawnRateList[i])
+            if (randomWeight < sexToys[i].weight)
             {
                     return i;
             }
-            randomWeight -= spawnRateList[i];
+            randomWeight -= sexToys[i].weight;
         }
 
         return 0;

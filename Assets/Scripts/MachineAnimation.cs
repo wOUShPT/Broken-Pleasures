@@ -17,14 +17,7 @@ public class MachineAnimation : MonoBehaviour
 
     void Update()
     {
-        if (_gameManager.currentGameState == GameManager.GameMode.GameLoop)
-        {
-            _isOn = true;
-        }
-        else
-        {
-            _isOn = false;
-        }
+        _isOn = _gameManager.currentGameState == GameManager.GameMode.GameLoop;
         lightAnimator.SetBool("isOn", _isOn);
     }
 }

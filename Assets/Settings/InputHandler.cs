@@ -32,6 +32,5 @@ public class InputHandler : MonoBehaviour
     {
         mousePosition = Input.mousePosition;
         mouseButton = Input.GetMouseButton(0);
-        //Debug.Log("Mouse Debug: Position = " + mousePosition + " / isPressed = " + mouseButton);
     }
 }
